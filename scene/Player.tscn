@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://da086prk4xfru"]
+
+[ext_resource type="Script" uid="uid://caodfh4wowrtc" path="res://src/Player/player.gd" id="1_kpjcp"]
+[ext_resource type="Script" uid="uid://j0xtfbpep1pp" path="res://src/Player/cam_root.gd" id="1_xhfnw"]
+[ext_resource type="Texture2D" uid="uid://da7mad0jfo7qt" path="res://Resource/01._RX-78-2_Gundam.webp" id="3_y30ri"]
+[ext_resource type="Texture2D" uid="uid://f8hnq5325lwa" path="res://Resource/Rx-78-2-back.webp" id="4_waelg"]
+[ext_resource type="Script" uid="uid://d3vg23lw421fo" path="res://src/Player/boost.gd" id="5_82gks"]
+[ext_resource type="Script" uid="uid://u12pms5r5v1h" path="res://src/Player/ui_gauge_Manager.gd" id="6_dc1pm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpjcp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kne1u"]
+
+[sub_resource type="Theme" id="Theme_waelg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82gks"]
+bg_color = Color(0.6, 0.6, 0.6, 0.5058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_waelg"]
+bg_color = Color(0, 0.8745098, 0.7647059, 1)
+border_color = Color(0, 0, 0.09803922, 1)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_kpjcp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_kpjcp")
+
+[node name="CamRoot" type="Node3D" parent="CollisionShape3D"]
+script = ExtResource("1_xhfnw")
+
+[node name="CamYaw" type="Node3D" parent="CollisionShape3D/CamRoot"]
+unique_name_in_owner = true
+
+[node name="CamPitch" type="Node3D" parent="CollisionShape3D/CamRoot/CamYaw"]
+unique_name_in_owner = true
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CollisionShape3D/CamRoot/CamYaw/CamPitch"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0)
+collision_mask = 2
+spring_length = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="CollisionShape3D/CamRoot/CamYaw/CamPitch/SpringArm3D"]
+
+[node name="Mesh" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1.9897668, 0, 8.742278e-08, 0, -1, 0, 0.09281188, 0)
+mesh = SubResource("BoxMesh_kne1u")
+
+[node name="Decal" type="Decal" parent="Mesh/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.6066643)
+size = Vector3(1.0947266, 2, 0.94921875)
+texture_albedo = ExtResource("3_y30ri")
+cull_mask = 1047553
+
+[node name="Decal2" type="Decal" parent="Mesh/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.010467364, 3.3527613e-08, 0.5187285)
+size = Vector3(0.9265747, 0.46289063, 0.94921875)
+texture_albedo = ExtResource("4_waelg")
+cull_mask = 1047553
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = 21.0
+offset_top = 41.0
+offset_right = 459.0
+offset_bottom = 68.0
+theme = SubResource("Theme_waelg")
+theme_override_styles/background = SubResource("StyleBoxFlat_82gks")
+theme_override_styles/fill = SubResource("StyleBoxFlat_waelg")
+value = 100.0
+show_percentage = false
+
+[node name="Boost" type="Node" parent="."]
+script = ExtResource("5_82gks")
+
+[node name="GaugeManager" type="Node" parent="."]
+script = ExtResource("6_dc1pm")
+
+[connection signal="consume_boost" from="." to="Boost" method="_on_character_body_3d_consume_boost"]
+[connection signal="end_consume_boost" from="." to="Boost" method="_on_character_body_3d_end_consume_boost"]
+[connection signal="boost_status" from="Boost" to="." method="_on_boost_boost_status"]
+[connection signal="boost_status" from="Boost" to="GaugeManager" method="_on_boost_boost_status"]

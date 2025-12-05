@@ -39,7 +39,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0)
 collision_mask = 2
-spring_length = 2.0
+spring_length = 2.5
 
 [node name="Camera3D" type="Camera3D" parent="CollisionShape3D/CamRoot/CamYaw/CamPitch/SpringArm3D"]
 
@@ -52,13 +52,13 @@ mesh = SubResource("BoxMesh_kne1u")
 
 [node name="Decal" type="Decal" parent="Mesh/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.6066643)
-size = Vector3(1.0947266, 2, 0.94921875)
+size = Vector3(0.94555664, 2, 0.94921875)
 texture_albedo = ExtResource("3_y30ri")
 cull_mask = 1047553
 
 [node name="Decal2" type="Decal" parent="Mesh/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.010467364, 3.3527613e-08, 0.5187285)
-size = Vector3(0.9265747, 0.46289063, 0.94921875)
+size = Vector3(0.78515625, 0.46289063, 0.94921875)
 texture_albedo = ExtResource("4_waelg")
 cull_mask = 1047553
 

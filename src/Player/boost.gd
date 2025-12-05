@@ -6,15 +6,6 @@ var boost : float = 100.0
 var is_boosting : bool = false
 var dashing : bool = false
 
-func _ready() -> void:
-	Player.dash.connect(_on_character_body_3d_dash)
-
-func _on_character_body_3d_dash(is_dashing: bool) -> void:
-	if is_dashing:
-		dashing = true
-	else :
-		dashing = false
-
 func _on_character_body_3d_consume_boost() -> void:
 	is_boosting = true
 

@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjcvs5mdbqxuv"
-path="res://.godot/imported/aff_0.png-c361ca64a426130467167787476f7cc7.ctex"
+uid="uid://bwq8lib5o1xc6"
+path="res://.godot/imported/vending_0.png-aeb6ce08a28d17c403b2e0ba7a4db5fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resource/aff_0.png"
-dest_files=["res://.godot/imported/aff_0.png-c361ca64a426130467167787476f7cc7.ctex"]
+source_file="res://Resource/vending_0.png"
+dest_files=["res://.godot/imported/vending_0.png-aeb6ce08a28d17c403b2e0ba7a4db5fb.ctex"]
 
 [params]
 
-compress/mode=4
-compress/high_quality=false
+compress/mode=0
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
@@ -25,7 +25,7 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
+roughness/mode=0
 roughness/src_normal=""
 process/channel_remap/red=0
 process/channel_remap/green=1

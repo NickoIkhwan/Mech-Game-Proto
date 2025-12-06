@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ddkpudqfhoiw5"
-path="res://.godot/imported/aff.gltf-d4409797a209f0c9acbd49cc647f30e4.scn"
+uid="uid://b71np1bvjldge"
+path="res://.godot/imported/vending.glb-ff45419d3f59b79d4875a77273cadad2.scn"
 
 [deps]
 
-source_file="res://Resource/aff.gltf"
-dest_files=["res://.godot/imported/aff.gltf-d4409797a209f0c9acbd49cc647f30e4.scn"]
+source_file="res://Resource/vending.glb"
+dest_files=["res://.godot/imported/vending.glb-ff45419d3f59b79d4875a77273cadad2.scn"]
 
 [params]
 

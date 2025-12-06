@@ -10,8 +10,6 @@ func _ready() -> void:
 	
 func _on_character_body_3d_dash(is_dashing:bool) -> void:
 		dashing = is_dashing
-		
-	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("mouse_show"):
@@ -30,8 +28,6 @@ func _physics_process(delta: float) -> void:
 		%Camera3D.fov = lerp(%Camera3D.fov, dash_fov, 0.2 )
 	else:
 		%Camera3D.fov = lerp(%Camera3D.fov, normal_fov, 0.2 )
-
-
 
 func capture_mouse():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

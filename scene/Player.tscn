@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://da086prk4xfru"]
+[gd_scene load_steps=22 format=3 uid="uid://da086prk4xfru"]
 
 [ext_resource type="Script" uid="uid://caodfh4wowrtc" path="res://src/Player/player.gd" id="1_kpjcp"]
 [ext_resource type="Script" uid="uid://j0xtfbpep1pp" path="res://src/Player/cam_root.gd" id="1_xhfnw"]
@@ -7,6 +7,12 @@
 [ext_resource type="Script" uid="uid://d3vg23lw421fo" path="res://src/Player/boost.gd" id="5_82gks"]
 [ext_resource type="Script" uid="uid://u12pms5r5v1h" path="res://src/Player/ui_gauge_Manager.gd" id="6_dc1pm"]
 [ext_resource type="Texture2D" uid="uid://de5boy2r5upgs" path="res://Resource/bool.png" id="6_ea7gk"]
+[ext_resource type="Script" uid="uid://cp2onqswigt3g" path="res://src/Player/States/state_machine.gd" id="8_63jwq"]
+[ext_resource type="Script" uid="uid://dl15huqbp3bcp" path="res://scene/idle.gd" id="9_r6ll3"]
+[ext_resource type="Script" uid="uid://j1n8yk3q6lho" path="res://scene/running.gd" id="10_r6ll3"]
+[ext_resource type="Script" uid="uid://bx202w4qoobt3" path="res://scene/jumping.gd" id="11_xf0yl"]
+[ext_resource type="Script" uid="uid://b8xrud4j0x4j4" path="res://scene/falling.gd" id="12_c2vjh"]
+[ext_resource type="Script" uid="uid://b18o7apjb62mr" path="res://scene/dashing.gd" id="13_w11jy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpjcp"]
 
@@ -178,6 +184,24 @@ script = ExtResource("5_82gks")
 
 [node name="GaugeManager" type="Node" parent="Misc"]
 script = ExtResource("6_dc1pm")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("8_63jwq")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("9_r6ll3")
+
+[node name="Running" type="Node" parent="StateMachine"]
+script = ExtResource("10_r6ll3")
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("11_xf0yl")
+
+[node name="Falling" type="Node" parent="StateMachine"]
+script = ExtResource("12_c2vjh")
+
+[node name="Dashing" type="Node" parent="StateMachine"]
+script = ExtResource("13_w11jy")
 
 [connection signal="consume_boost" from="." to="Misc/Boost" method="_on_character_body_3d_consume_boost"]
 [connection signal="dash" from="." to="CamRoot" method="_on_character_body_3d_dash"]

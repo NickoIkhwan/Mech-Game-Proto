@@ -42,7 +42,6 @@ func _physics_process(delta: float) -> void:
 		elif Input.is_action_pressed("dash") and not dash_locked:
 			if Input.is_action_pressed("movement"):
 				target_acc *= DASH_MULTIPLIER
-				velocity.y = 0.0
 				dashing_signal_true()
 		else:
 			dashing_signal_false()

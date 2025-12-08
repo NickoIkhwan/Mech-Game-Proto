@@ -107,6 +107,10 @@ mesh = SubResource("BoxMesh_kne1u")
 skeleton = NodePath("../../../../../Leg")
 surface_material_override/0 = ExtResource("4_ea7gk")
 
+[node name="Marker3D" type="Marker3D" parent="CamRoot/CamYaw/CamPitch/Gun"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18294191, 0.11159229, -1.8418065)
+
 [node name="SpringArm3D" type="SpringArm3D" parent="CamRoot/CamYaw/CamPitch"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -6.556708e-08)

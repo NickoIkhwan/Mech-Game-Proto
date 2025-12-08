@@ -16,7 +16,6 @@ var is_dashing : bool = false
 var is_consuming_boost : bool = false
 var dash_locked : bool = false
 
-
 func _on_boost_boost_status(boost: float) -> void:
 	boost_player = boost
 	
@@ -51,6 +50,9 @@ func _physics_process(delta: float) -> void:
 		dashing_signal_false()
 		dash_locked = true
 	
+	if Input.is_action_pressed("Shoot"):
+		shoot()
+		
 	if not Input.is_action_pressed("dash"):
 		dash_locked = false
 		
@@ -78,3 +80,11 @@ func dashing_signal_false():
 	is_dashing = false
 	consume_boost.emit(is_consuming_boost)
 	dash.emit(is_dashing)
+	
+func shoot():
+	const BULLET = preload("uid://cw7nucuyth0hp")
+	var new_bullet = BULLET.instantiate()
+	%Marker3D.add_child(new_bullet)
+	
+	new_bullet.global_transform = %Marker3D.global_transform
+	

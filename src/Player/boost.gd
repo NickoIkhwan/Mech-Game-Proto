@@ -3,7 +3,7 @@ extends Node
 signal boost_status(boost : float)
 @onready var Player = $"../.."
 var boost : float = 100.0
-var consume_rate : float = 100.0
+var consume_rate : float = 50.0
 var recharge_rate: float = 120.0
 var is_boosting : bool = false
 var dashing : bool = false

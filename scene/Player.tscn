@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://da086prk4xfru"]
+[gd_scene load_steps=17 format=3 uid="uid://da086prk4xfru"]
 
 [ext_resource type="Script" uid="uid://caodfh4wowrtc" path="res://src/Player/player.gd" id="1_kpjcp"]
 [ext_resource type="Script" uid="uid://j0xtfbpep1pp" path="res://src/Player/cam_root.gd" id="1_xhfnw"]
 [ext_resource type="Material" uid="uid://blw45hkcg1o2a" path="res://Resource/Tang.tres" id="2_82gks"]
 [ext_resource type="Material" uid="uid://b2cjou1ux1tud" path="res://Resource/Metal.tres" id="4_ea7gk"]
+[ext_resource type="Script" uid="uid://d1hbaiw2s084u" path="res://scene/gun.gd" id="4_kqvfm"]
 [ext_resource type="Script" uid="uid://d3vg23lw421fo" path="res://src/Player/boost.gd" id="5_82gks"]
 [ext_resource type="Script" uid="uid://u12pms5r5v1h" path="res://src/Player/ui_gauge_Manager.gd" id="6_dc1pm"]
 [ext_resource type="Texture2D" uid="uid://de5boy2r5upgs" path="res://Resource/bool.png" id="6_ea7gk"]
@@ -94,6 +95,7 @@ unique_name_in_owner = true
 [node name="Gun" type="Node3D" parent="CamRoot/CamYaw/CamPitch"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39332163, 0.5577459, -0.041817427)
+script = ExtResource("4_kqvfm")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="CamRoot/CamYaw/CamPitch/Gun"]
 transform = Transform3D(-0.34641853, 0, -6.7478986e-08, 0, 0.6228457, 0, 3.0284866e-08, 0, -0.77186966, 0.18340087, 0.07207975, 4.204308e-08)
@@ -186,5 +188,6 @@ script = ExtResource("6_dc1pm")
 [connection signal="consume_boost" from="." to="Misc/Boost" method="_on_character_body_3d_consume_boost"]
 [connection signal="dash" from="." to="CamRoot" method="_on_character_body_3d_dash"]
 [connection signal="dash" from="." to="Misc/Boost" method="_on_character_body_3d_dash"]
+[connection signal="shoot" from="." to="CamRoot/CamYaw/CamPitch/Gun" method="_on_character_body_3d_shoot"]
 [connection signal="boost_status" from="Misc/Boost" to="." method="_on_boost_boost_status"]
 [connection signal="boost_status" from="Misc/Boost" to="Misc/GaugeManager" method="_on_boost_boost_status"]

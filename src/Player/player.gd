@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
-signal consume_boost(is_consuming_boost:bool)
+signal shoot(is_shooting : bool)
+signal consume_boost(is_consuming_boost : bool)
 signal dash(is_dashing : bool)
 
 const SPEED : float = 10.0
@@ -12,6 +13,7 @@ var deaccel : float = 6.0
 var deaccel_air : float = 1.0
 var deaccel_dash : float = 0.1
 var boost_player : float 
+var is_shooting : bool = false
 var is_dashing : bool = false
 var is_consuming_boost : bool = false
 var dash_locked : bool = false
@@ -50,7 +52,11 @@ func _physics_process(delta: float) -> void:
 		dash_locked = true
 	
 	if Input.is_action_pressed("Shoot"):
-		shoot()
+		is_shooting = true
+		shoot.emit(is_shooting)
+	else:
+		is_shooting = false
+		shoot.emit(is_shooting)
 		
 	if not Input.is_action_pressed("dash"):
 		dash_locked = false
@@ -68,6 +74,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	
 func dashing_signal_true():
 	is_consuming_boost = true
 	is_dashing = true
@@ -80,10 +87,5 @@ func dashing_signal_false():
 	consume_boost.emit(is_consuming_boost)
 	dash.emit(is_dashing)
 	
-func shoot():
-	const BULLET = preload("uid://cw7nucuyth0hp")
-	var new_bullet = BULLET.instantiate()
-	%Marker3D.add_child(new_bullet)
-	
-	new_bullet.global_transform = %Marker3D.global_transform
+
 	

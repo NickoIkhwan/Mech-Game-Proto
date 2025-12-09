@@ -21,6 +21,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		%CamYaw.rotation_degrees.y -= event.relative.x * 0.2
 		%CamPitch.rotation_degrees.x -= event.relative.y * 0.2
 		
+		%Torso.rotation_degrees.y -= event.relative.x * 0.2
+		%Gun.rotation_degrees.x -= event.relative.y * 0.2
+		
+		
+		%Gun.rotation_degrees.x = clamp(%Gun.rotation_degrees.x, -70.0, 50.0)
 		%CamPitch.rotation_degrees.x = clamp(%CamPitch.rotation_degrees.x, -70.0, 50.0)
 
 func _physics_process(delta: float) -> void:

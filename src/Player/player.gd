@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	var current = accel
 	
 	if input_dir3D.length_squared() > 0:
-		var target_basis = basis.looking_at( -direction, Vector3.UP)
+		var target_basis = Basis.looking_at( -direction, Vector3.UP)
 		%Leg.global_transform.basis = %Leg.global_transform.basis.slerp(target_basis, 10.2 * delta)
 	
 	if not is_dashing:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw7nucuyth0hp"]
+[gd_scene load_steps=5 format=3 uid="uid://cw7nucuyth0hp"]
 
 [ext_resource type="Script" uid="uid://cau8is8f6s36v" path="res://scene/bullet.gd" id="1_qwydi"]
 
@@ -6,6 +6,10 @@
 radius = 0.1481373
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qwydi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwydi"]
+albedo_color = Color(0.62763137, 0.62950665, 0.6209876, 1)
+emission = Color(1, 0.07450981, 0.36078432, 1)
 
 [node name="Bullet" type="Area3D"]
 top_level = true
@@ -15,5 +19,6 @@ script = ExtResource("1_qwydi")
 shape = SubResource("SphereShape3D_dcxha")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-3.3113765e-11, -2.7808236e-08, 0.10911699, -0.08917943, -0.008148144, 0, 0.0011425182, -0.6360047, -4.769655e-09, 0, 0, 0)
+transform = Transform3D(-3.2894364e-11, -1.112663e-08, 0.109116994, -0.08858856, -0.0032602348, 0, 0.0011349483, -0.25447813, -4.769655e-09, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_qwydi")
+surface_material_override/0 = SubResource("StandardMaterial3D_qwydi")

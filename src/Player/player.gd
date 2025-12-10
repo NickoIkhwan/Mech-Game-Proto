@@ -3,7 +3,7 @@ extends CharacterBody3D
 signal shoot(is_shooting : bool)
 signal consume_boost(is_consuming_boost : bool)
 signal dash(is_dashing : bool)
-
+signal aim(is_aiming : bool)
 const SPEED : float = 10.0
 const FLY_SPEED : float = 25.0
 const DASH_MULTIPLIER : float = 4
@@ -17,6 +17,7 @@ var is_shooting : bool = false
 var is_dashing : bool = false
 var is_consuming_boost : bool = false
 var dash_locked : bool = false
+var is_aiming : bool = false
 
 func _on_boost_boost_status(boost: float) -> void:
 	boost_player = boost
@@ -57,6 +58,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		is_shooting = false
 		shoot.emit(is_shooting)
+		
+	if Input.is_action_pressed("aim"):
+		is_aiming = true
+		aim.emit(is_aiming)
+	else:
+		is_aiming = false
+		aim.emit(is_aiming)
 		
 	if not Input.is_action_pressed("dash"):
 		dash_locked = false

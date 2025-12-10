@@ -1,12 +1,17 @@
 extends Node3D
 
-var dash_fov : float = 120
+var dash_fov : float = 160
 var normal_fov: float = 75
+var aim_fov : float = 30
 var dashing : bool = false
+var aiming : bool = false
 
 
 func _ready() -> void:
 	capture_mouse()
+	
+func _on_character_body_3d_aim(is_aiming: bool) -> void:
+	aiming = is_aiming
 	
 func _on_character_body_3d_dash(is_dashing:bool) -> void:
 		dashing = is_dashing
@@ -29,10 +34,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		%CamPitch.rotation_degrees.x = clamp(%CamPitch.rotation_degrees.x, -70.0, 50.0)
 
 func _physics_process(delta: float) -> void:
-	if dashing:
-		%Camera3D.fov = lerp(%Camera3D.fov, dash_fov, 0.2 )
+	if dashing and not aiming:
+		%Camera3D.fov = lerp(%Camera3D.fov, dash_fov, 0.5 )
 	else:
-		%Camera3D.fov = lerp(%Camera3D.fov, normal_fov, 0.2 )
+		%Camera3D.fov = lerp(%Camera3D.fov, normal_fov, 0.5 )
+	
+	if aiming:
+		%Camera3D.fov = lerp(%Camera3D.fov, aim_fov, 0.5 )
+	else:
+		%Camera3D.fov = lerp(%Camera3D.fov, normal_fov, 0.5 )
+		
 
 func capture_mouse():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

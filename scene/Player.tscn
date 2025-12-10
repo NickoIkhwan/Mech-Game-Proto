@@ -33,7 +33,7 @@ border_color = Color(0, 0, 0.09803922, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqvfm"]
 bg_color = Color(0.76983994, 0.5571507, 0.13776878, 1)
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="Player1" type="CharacterBody3D"]
 script = ExtResource("1_kpjcp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -164,6 +164,10 @@ margin = 0.03
 unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.556708e-08, 0, 1.5)
 
+[node name="zoom" type="Marker3D" parent="CamRoot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8791883, 0.6354094, -0.22546005)
+
 [node name="Ui_elements" type="Node" parent="."]
 
 [node name="Bool" type="TextureRect" parent="Ui_elements"]
@@ -219,6 +223,7 @@ unique_name_in_owner = true
 wait_time = 0.06
 one_shot = true
 
+[connection signal="aim" from="." to="CamRoot" method="_on_character_body_3d_aim"]
 [connection signal="consume_boost" from="." to="Misc/Boost" method="_on_character_body_3d_consume_boost"]
 [connection signal="dash" from="." to="CamRoot" method="_on_character_body_3d_dash"]
 [connection signal="dash" from="." to="Misc/Boost" method="_on_character_body_3d_dash"]

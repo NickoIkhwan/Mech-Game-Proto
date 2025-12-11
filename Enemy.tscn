@@ -1,16 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkj4k7ir0gvst"]
 
-[ext_resource type="Script" uid="uid://bsxdxv0felv5c" path="res://character_body_3d.gd" id="1_tt7e2"]
+[ext_resource type="Script" uid="uid://ciq127ysbfq3q" path="res://enemy.gd" id="1_tt7e2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tt7e2"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_2hac7"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tt7e2"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_tt7e2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_tt7e2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
-mesh = SubResource("CylinderMesh_2hac7")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_tt7e2")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." groups=["enemies"]]
+navigation_layers = 3
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)

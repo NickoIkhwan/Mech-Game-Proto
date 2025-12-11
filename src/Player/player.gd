@@ -9,8 +9,8 @@ const FLY_SPEED : float = 25.0
 const DASH_MULTIPLIER : float = 4
 @onready var boost_Gauge : ProgressBar = %ProgressBar
 var accel : float = 5.0
-var deaccel : float = 6.0
-var deaccel_air : float = 1.0
+var deaccel : float = 3.0
+var deaccel_air : float = 0.3
 var deaccel_dash : float = 0.1
 var boost_player : float 
 var is_shooting : bool = false

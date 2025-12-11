@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkj4k7ir0gvst"]
+[gd_scene load_steps=5 format=3 uid="uid://dkj4k7ir0gvst"]
 
 [ext_resource type="Script" uid="uid://ciq127ysbfq3q" path="res://enemy.gd" id="1_tt7e2"]
 
@@ -6,17 +6,46 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tt7e2"]
 
-[node name="Enemy" type="CharacterBody3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_tt7e2"]
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_tt7e2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_tt7e2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Body" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
 mesh = SubResource("CapsuleMesh_tt7e2")
 skeleton = NodePath("../CollisionShape3D")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body"]
+mesh = SubResource("BoxMesh_tt7e2")
+skeleton = NodePath("../../CollisionShape3D")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.48713672, 0, 0, 0, 1, 0, 0.9451252, 0)
+mesh = SubResource("BoxMesh_tt7e2")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="eye" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(0.42906368, 0, 0, 0, 0.68634486, 0, 0, 0, 0.14792335, 0, 0, -0.62238014)
+mesh = SubResource("BoxMesh_tt7e2")
+skeleton = NodePath("../../CollisionShape3D")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." groups=["enemies"]]
 navigation_layers = 3
 debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5235761, 2.2886237e-08)
+collide_with_areas = true
+
+[node name="Timer1" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer1" to="." method="_on_timer_1_timeout"]

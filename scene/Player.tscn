@@ -33,7 +33,7 @@ border_color = Color(0, 0, 0.09803922, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqvfm"]
 bg_color = Color(0.76983994, 0.5571507, 0.13776878, 1)
 
-[node name="Player1" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_kpjcp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

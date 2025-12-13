@@ -11,7 +11,7 @@ radius = 0.1481373
 albedo_color = Color(0.62763137, 0.62950665, 0.6209876, 1)
 emission = Color(1, 0.07450981, 0.36078432, 1)
 
-[node name="Bullet" type="Area3D"]
+[node name="Bullet" type="Area3D" groups=["bullets"]]
 top_level = true
 script = ExtResource("1_qwydi")
 
@@ -22,3 +22,5 @@ shape = SubResource("SphereShape3D_dcxha")
 transform = Transform3D(-3.2894364e-11, -1.112663e-08, 0.109116994, -0.08858856, -0.0032602348, 0, 0.0011349483, -0.25447813, -4.769655e-09, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_qwydi")
 surface_material_override/0 = SubResource("StandardMaterial3D_qwydi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

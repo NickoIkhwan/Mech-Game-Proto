@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 var player: CharacterBody3D
+var health : float = 100
+var player_close : bool = false
 
 func _ready() -> void:
 	%Timer1.start()
@@ -32,14 +34,39 @@ func _physics_process(delta: float) -> void:
 	velocity.x = lerp(velocity.x, target_dir.x , 5.0 * delta)
 	velocity.z = lerp(velocity.z, target_dir.z , 5.0 * delta)
 	
+	if player_close:
+		follow_player()
+		
 	if player:
 		%Head.look_at(player.global_position)
 		
+		
 	move_and_slide()
 
+func take_damage():
+	print("hit")
+	health -= 2
+	velocity.y = 40.0
+	if health <= 0 :
+		set_physics_process(false)
+		queue_free()
+		
 
 func _on_timer_1_timeout() -> void:
-	if player:
-		var target = player.global_position
-		navigation_agent_3d.set_target_position(target)
+	if player and not player_close:
+		follow_player()
 		%Timer1.start()
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		player_close = true
+
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		player_close = false
+
+func follow_player():
+	var target = player.global_position
+	navigation_agent_3d.set_target_position(target)

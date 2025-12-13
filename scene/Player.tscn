@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://da086prk4xfru"]
+[gd_scene load_steps=20 format=3 uid="uid://da086prk4xfru"]
 
 [ext_resource type="Script" uid="uid://caodfh4wowrtc" path="res://src/Player/player.gd" id="1_kpjcp"]
 [ext_resource type="Script" uid="uid://j0xtfbpep1pp" path="res://src/Player/cam_root.gd" id="1_xhfnw"]
@@ -6,10 +6,13 @@
 [ext_resource type="Material" uid="uid://b2cjou1ux1tud" path="res://Resource/Metal.tres" id="4_ea7gk"]
 [ext_resource type="Script" uid="uid://d1hbaiw2s084u" path="res://scene/gun.gd" id="4_kqvfm"]
 [ext_resource type="Script" uid="uid://d3vg23lw421fo" path="res://src/Player/boost.gd" id="5_82gks"]
+[ext_resource type="Script" uid="uid://ca7hxrj6oslq5" path="res://scene/ray_cast_3d.gd" id="6_63jwq"]
 [ext_resource type="Script" uid="uid://u12pms5r5v1h" path="res://src/Player/ui_gauge_Manager.gd" id="6_dc1pm"]
 [ext_resource type="Texture2D" uid="uid://de5boy2r5upgs" path="res://Resource/bool.png" id="6_ea7gk"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpjcp"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_ea7gk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kqvfm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_kne1u"]
 
@@ -17,9 +20,7 @@
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_kqvfm"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_ea7gk"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_kqvfm"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpjcp"]
 
 [sub_resource type="Theme" id="Theme_waelg"]
 
@@ -35,105 +36,6 @@ bg_color = Color(0.76983994, 0.5571507, 0.13776878, 1)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_kpjcp")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.72, 0, 0, 0, 1.72, 0, 0, 0, 1.72, 0, 0.42361972, 0)
-shape = SubResource("CapsuleShape3D_kpjcp")
-
-[node name="Torso" type="Node3D" parent="."]
-unique_name_in_owner = true
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Torso"]
-transform = Transform3D(-0.8995632, 0, -6.747899e-08, 0, 1.0592532, 0, 7.864231e-08, 0, -0.7718697, 0, 0.6055588, 0)
-mesh = SubResource("BoxMesh_kne1u")
-skeleton = NodePath("../../Leg")
-surface_material_override/0 = ExtResource("2_82gks")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Torso"]
-transform = Transform3D(-0.8995632, 3.1354492e-08, -2.9496006e-15, 0, -1.5677246e-08, -0.7718697, -7.864231e-08, -0.35865358, 3.3739497e-08, 3.1760724e-08, 0.6055588, 0.3633003)
-material_override = ExtResource("4_ea7gk")
-mesh = SubResource("CylinderMesh_ea7gk")
-skeleton = NodePath("../../Leg")
-surface_material_override/0 = ExtResource("2_82gks")
-
-[node name="Gun" type="Node3D" parent="Torso"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39332163, 0.5577459, -0.041817427)
-script = ExtResource("4_kqvfm")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Torso/Gun"]
-transform = Transform3D(-0.34641853, 0, -6.7478986e-08, 0, 0.6228457, 0, 3.0284866e-08, 0, -0.77186966, 0.18340087, 0.07207975, 4.204308e-08)
-material_override = ExtResource("2_82gks")
-mesh = SubResource("BoxMesh_kne1u")
-skeleton = NodePath("../../../Leg")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Torso/Gun"]
-transform = Transform3D(-0.09117168, -6.0837536e-08, 0, 0, -3.0418768e-08, -0.10422588, 7.97048e-09, -0.6959003, 4.555859e-09, 0.17056105, 0.11223705, -1.035651)
-mesh = SubResource("CylinderMesh_kqvfm")
-skeleton = NodePath("../../../Leg")
-surface_material_override/0 = ExtResource("4_ea7gk")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Torso/Gun"]
-transform = Transform3D(-0.09117168, -6.0837536e-08, 0, 0, -3.0418768e-08, -0.10422588, 7.97048e-09, -0.6959003, 4.555859e-09, 0.17056105, -0.066734985, -1.035651)
-mesh = SubResource("CylinderMesh_kqvfm")
-skeleton = NodePath("../../../Leg")
-surface_material_override/0 = ExtResource("4_ea7gk")
-
-[node name="Marker3D" type="Marker3D" parent="Torso/Gun"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18294191, 0.11159229, -1.8418065)
-
-[node name="Marker3D2" type="Marker3D" parent="Torso/Gun"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18294191, -0.067183256, -1.8418065)
-
-[node name="Leg" type="Node3D" parent="."]
-unique_name_in_owner = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Leg"]
-transform = Transform3D(-0.8995632, 0, -6.747899e-08, 0, 0.1938522, 0, 7.864231e-08, 0, -0.7718697, 0, -0.08358508, 0)
-material_override = ExtResource("2_82gks")
-mesh = SubResource("BoxMesh_kne1u")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Leg"]
-transform = Transform3D(0.6360873, 0, 0.19675611, 0, 0.1938522, 0, -0.6360873, 0, 0.19675611, 0.6413058, -0.08358508, -0.5393876)
-material_override = ExtResource("2_82gks")
-mesh = SubResource("BoxMesh_kne1u")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Leg"]
-transform = Transform3D(0.6360873, 0, 0.19675611, 0, 0.1938522, 0, -0.6360873, 0, 0.19675611, -0.5901989, -0.08358508, 0.5862949)
-material_override = ExtResource("2_82gks")
-mesh = SubResource("BoxMesh_kne1u")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Leg"]
-transform = Transform3D(0.6360873, 0, -0.19675611, 0, 0.1938522, 0, 0.6360873, 0, 0.19675611, 0.5362756, -0.08358508, 0.5862949)
-material_override = ExtResource("2_82gks")
-mesh = SubResource("BoxMesh_kne1u")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Leg"]
-transform = Transform3D(0.6360873, 0, -0.19675611, 0, 0.1938522, 0, 0.6360873, 0, 0.19675611, -0.63877416, -0.08358508, -0.5753117)
-material_override = ExtResource("2_82gks")
-mesh = SubResource("BoxMesh_kne1u")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Leg"]
-transform = Transform3D(-3.291356e-08, -0.1370742, -0.19675611, 1.0648668, -8.473549e-09, 0, -3.291356e-08, -0.1370742, 0.19675611, -0.9495952, -0.4043371, -0.8875936)
-material_override = ExtResource("2_82gks")
-mesh = SubResource("BoxMesh_kne1u")
-
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="Leg"]
-transform = Transform3D(-3.291356e-08, -0.1370742, -0.19675611, 1.0648668, -8.473549e-09, 0, -3.291356e-08, -0.1370742, 0.19675611, 0.9180304, -0.4043371, 0.94437253)
-material_override = ExtResource("2_82gks")
-mesh = SubResource("BoxMesh_kne1u")
-
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="Leg"]
-transform = Transform3D(-3.291356e-08, -0.13707419, 0.19675611, 1.0648668, -8.473548e-09, 0, 3.291356e-08, 0.13707419, 0.19675611, 0.9180304, -0.4043371, -0.89315283)
-material_override = ExtResource("2_82gks")
-mesh = SubResource("BoxMesh_kne1u")
-
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="Leg"]
-transform = Transform3D(-3.291356e-08, -0.13707419, 0.19675611, 1.0648668, -8.473548e-09, 0, 3.291356e-08, 0.13707419, 0.19675611, -0.9499178, -0.4043371, 0.8938221)
-material_override = ExtResource("2_82gks")
-mesh = SubResource("BoxMesh_kne1u")
 
 [node name="CamRoot" type="Node3D" parent="."]
 script = ExtResource("1_xhfnw")
@@ -164,9 +66,114 @@ margin = 0.03
 unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.556708e-08, 0, 1.5)
 
+[node name="RayCast3D" type="RayCast3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D/SpringArmSide/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0)
+collision_mask = 3
+script = ExtResource("6_63jwq")
+
 [node name="zoom" type="Marker3D" parent="CamRoot"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8791883, 0.6354094, -0.22546005)
+
+[node name="Torso" type="Node3D" parent="CamRoot"]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CamRoot/Torso"]
+transform = Transform3D(-0.8995632, 0, -6.747899e-08, 0, 1.0592532, 0, 7.864231e-08, 0, -0.7718697, 0, 0.6055588, 0)
+mesh = SubResource("BoxMesh_kne1u")
+skeleton = NodePath("../../Leg")
+surface_material_override/0 = ExtResource("2_82gks")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CamRoot/Torso"]
+transform = Transform3D(-0.8995632, 3.1354492e-08, -2.9496006e-15, 0, -1.5677246e-08, -0.7718697, -7.864231e-08, -0.35865358, 3.3739497e-08, 3.1760724e-08, 0.6055588, 0.3633003)
+material_override = ExtResource("4_ea7gk")
+mesh = SubResource("CylinderMesh_ea7gk")
+skeleton = NodePath("../../Leg")
+surface_material_override/0 = ExtResource("2_82gks")
+
+[node name="Gun" type="Node3D" parent="CamRoot/Torso"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39332163, 0.5577459, -0.041817427)
+script = ExtResource("4_kqvfm")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CamRoot/Torso/Gun"]
+transform = Transform3D(-0.34641853, 0, -6.7478986e-08, 0, 0.6228457, 0, 3.0284866e-08, 0, -0.77186966, 0.18340087, 0.07207975, 4.204308e-08)
+material_override = ExtResource("2_82gks")
+mesh = SubResource("BoxMesh_kne1u")
+skeleton = NodePath("../../../Leg")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CamRoot/Torso/Gun"]
+transform = Transform3D(-0.09117168, -6.0837536e-08, 0, 0, -3.0418768e-08, -0.10422588, 7.97048e-09, -0.6959003, 4.555859e-09, 0.17056105, 0.11223705, -1.035651)
+mesh = SubResource("CylinderMesh_kqvfm")
+skeleton = NodePath("../../../Leg")
+surface_material_override/0 = ExtResource("4_ea7gk")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="CamRoot/Torso/Gun"]
+transform = Transform3D(-0.09117168, -6.0837536e-08, 0, 0, -3.0418768e-08, -0.10422588, 7.97048e-09, -0.6959003, 4.555859e-09, 0.17056105, -0.066734985, -1.035651)
+mesh = SubResource("CylinderMesh_kqvfm")
+skeleton = NodePath("../../../Leg")
+surface_material_override/0 = ExtResource("4_ea7gk")
+
+[node name="Marker3D" type="Marker3D" parent="CamRoot/Torso/Gun"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18294191, 0.11159229, -1.8418065)
+
+[node name="Marker3D2" type="Marker3D" parent="CamRoot/Torso/Gun"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18294191, -0.067183256, -1.8418065)
+
+[node name="Leg" type="Node3D" parent="CamRoot"]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CamRoot/Leg"]
+transform = Transform3D(-0.8995632, 0, -6.747899e-08, 0, 0.1938522, 0, 7.864231e-08, 0, -0.7718697, 0, -0.08358508, 0)
+material_override = ExtResource("2_82gks")
+mesh = SubResource("BoxMesh_kne1u")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CamRoot/Leg"]
+transform = Transform3D(0.6360873, 0, 0.19675611, 0, 0.1938522, 0, -0.6360873, 0, 0.19675611, 0.6413058, -0.08358508, -0.5393876)
+material_override = ExtResource("2_82gks")
+mesh = SubResource("BoxMesh_kne1u")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CamRoot/Leg"]
+transform = Transform3D(0.6360873, 0, 0.19675611, 0, 0.1938522, 0, -0.6360873, 0, 0.19675611, -0.5901989, -0.08358508, 0.5862949)
+material_override = ExtResource("2_82gks")
+mesh = SubResource("BoxMesh_kne1u")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CamRoot/Leg"]
+transform = Transform3D(0.6360873, 0, -0.19675611, 0, 0.1938522, 0, 0.6360873, 0, 0.19675611, 0.5362756, -0.08358508, 0.5862949)
+material_override = ExtResource("2_82gks")
+mesh = SubResource("BoxMesh_kne1u")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="CamRoot/Leg"]
+transform = Transform3D(0.6360873, 0, -0.19675611, 0, 0.1938522, 0, 0.6360873, 0, 0.19675611, -0.63877416, -0.08358508, -0.5753117)
+material_override = ExtResource("2_82gks")
+mesh = SubResource("BoxMesh_kne1u")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="CamRoot/Leg"]
+transform = Transform3D(-3.291356e-08, -0.1370742, -0.19675611, 1.0648668, -8.473549e-09, 0, -3.291356e-08, -0.1370742, 0.19675611, -0.9495952, -0.4043371, -0.8875936)
+material_override = ExtResource("2_82gks")
+mesh = SubResource("BoxMesh_kne1u")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="CamRoot/Leg"]
+transform = Transform3D(-3.291356e-08, -0.1370742, -0.19675611, 1.0648668, -8.473549e-09, 0, -3.291356e-08, -0.1370742, 0.19675611, 0.9180304, -0.4043371, 0.94437253)
+material_override = ExtResource("2_82gks")
+mesh = SubResource("BoxMesh_kne1u")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="CamRoot/Leg"]
+transform = Transform3D(-3.291356e-08, -0.13707419, 0.19675611, 1.0648668, -8.473548e-09, 0, 3.291356e-08, 0.13707419, 0.19675611, 0.9180304, -0.4043371, -0.89315283)
+material_override = ExtResource("2_82gks")
+mesh = SubResource("BoxMesh_kne1u")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="CamRoot/Leg"]
+transform = Transform3D(-3.291356e-08, -0.13707419, 0.19675611, 1.0648668, -8.473548e-09, 0, 3.291356e-08, 0.13707419, 0.19675611, -0.9499178, -0.4043371, 0.8938221)
+material_override = ExtResource("2_82gks")
+mesh = SubResource("BoxMesh_kne1u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.72, 0, 0, 0, 1.72, 0, 0, 0, 1.72, 0, 0.42361972, 0)
+shape = SubResource("CapsuleShape3D_kpjcp")
 
 [node name="Ui_elements" type="Node" parent="."]
 
@@ -227,6 +234,6 @@ one_shot = true
 [connection signal="consume_boost" from="." to="Misc/Boost" method="_on_character_body_3d_consume_boost"]
 [connection signal="dash" from="." to="CamRoot" method="_on_character_body_3d_dash"]
 [connection signal="dash" from="." to="Misc/Boost" method="_on_character_body_3d_dash"]
-[connection signal="shoot" from="." to="Torso/Gun" method="_on_character_body_3d_shoot"]
+[connection signal="shoot" from="." to="CamRoot/Torso/Gun" method="_on_character_body_3d_shoot"]
 [connection signal="boost_status" from="Misc/Boost" to="." method="_on_boost_boost_status"]
 [connection signal="boost_status" from="Misc/Boost" to="Misc/GaugeManager" method="_on_boost_boost_status"]

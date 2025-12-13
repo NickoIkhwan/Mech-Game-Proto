@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkj4k7ir0gvst"]
+[gd_scene load_steps=7 format=3 uid="uid://dkj4k7ir0gvst"]
 
 [ext_resource type="Script" uid="uid://ciq127ysbfq3q" path="res://enemy.gd" id="1_tt7e2"]
+[ext_resource type="Script" uid="uid://qvaatqxsmdha" path="res://area_3d.gd" id="2_s7bn3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tt7e2"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tt7e2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tt7e2"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tt7e2"]
+radius = 1.2807617
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_tt7e2")
@@ -48,4 +52,13 @@ unique_name_in_owner = true
 wait_time = 2.0
 autostart = true
 
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("2_s7bn3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 2.553999, 0)
+shape = SubResource("CylinderShape3D_tt7e2")
+
 [connection signal="timeout" from="Timer1" to="." method="_on_timer_1_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

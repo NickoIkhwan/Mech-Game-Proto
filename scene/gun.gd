@@ -12,6 +12,7 @@ func _on_character_body_3d_shoot(is_shooting: bool) -> void:
 	
 func _physics_process(delta: float) -> void:
 	
+	
 	if ammo == 300.0:
 		is_reloading = false
 	

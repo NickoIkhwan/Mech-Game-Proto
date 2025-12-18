@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw7nucuyth0hp"]
+[gd_scene load_steps=5 format=3 uid="uid://b807mvpaidnc7"]
 
-[ext_resource type="Script" uid="uid://cau8is8f6s36v" path="res://src/guns/bullet.gd" id="1_qwydi"]
+[ext_resource type="Script" uid="uid://cirtohe7pdrd" path="res://src/guns/bullet_scatter.gd" id="1_l3lqp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dcxha"]
 radius = 0.1481373
@@ -13,7 +13,7 @@ emission = Color(1, 0.07450981, 0.36078432, 1)
 
 [node name="Bullet" type="Area3D" groups=["bullets"]]
 top_level = true
-script = ExtResource("1_qwydi")
+script = ExtResource("1_l3lqp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_dcxha")

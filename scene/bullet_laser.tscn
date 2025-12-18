@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw7nucuyth0hp"]
+[gd_scene load_steps=5 format=3 uid="uid://v3b61lgsywg"]
 
-[ext_resource type="Script" uid="uid://cau8is8f6s36v" path="res://src/guns/bullet.gd" id="1_qwydi"]
+[ext_resource type="Script" uid="uid://clsl3rwotfl54" path="res://src/guns/bullet_laser.gd" id="1_3kj5a"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_dcxha"]
-radius = 0.1481373
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a8ign"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qwydi"]
 
@@ -12,14 +11,16 @@ albedo_color = Color(0.62763137, 0.62950665, 0.6209876, 1)
 emission = Color(1, 0.07450981, 0.36078432, 1)
 
 [node name="Bullet" type="Area3D" groups=["bullets"]]
+transform = Transform3D(2.2, 0, 0, 0, 23.514402, 0, 0, 0, 3.9, 0, 0, 0)
 top_level = true
-script = ExtResource("1_qwydi")
+script = ExtResource("1_3kj5a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_dcxha")
+transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, -0.2, 0, 0.2, -8.742278e-09, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_a8ign")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-3.2894364e-11, -1.112663e-08, 0.109116994, -0.08858856, -0.0032602348, 0, 0.0011349483, -0.25447813, -4.769655e-09, 0, 0, 0)
+transform = Transform3D(-3.552751e-11, -2.3331522e-08, 0.42555627, -0.095679946, -0.0068364125, 0, 0.0012257993, -0.53361726, -1.8601652e-08, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_qwydi")
 surface_material_override/0 = SubResource("StandardMaterial3D_qwydi")
 

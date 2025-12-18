@@ -2,7 +2,7 @@ extends Node3D
 @onready var player = preload("res://scene/Player.tscn")
 @onready var player_instance : CharacterBody3D = null
 
-@onready var enemy = preload("res://Enemy.tscn")
+@onready var enemy = preload("res://scene/Enemy.tscn")
 @onready var enemy_instance : CharacterBody3D = null
 
 func _ready() -> void:

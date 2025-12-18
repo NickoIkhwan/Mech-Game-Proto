@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5ahjcghs6kgx"]
+
+[ext_resource type="Script" uid="uid://cxokyxbco5qhp" path="res://src/guns/gun2.gd" id="1_bdwsf"]
+[ext_resource type="Material" uid="uid://blw45hkcg1o2a" path="res://Resource/Tang.tres" id="2_iq8yd"]
+[ext_resource type="Material" uid="uid://b2cjou1ux1tud" path="res://Resource/Metal.tres" id="3_60f20"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pr6yj"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_k8v55"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kw0bs"]
+bg_color = Color(0.76983994, 0.5571507, 0.13776878, 1)
+
+[node name="Gun" type="Node3D"]
+unique_name_in_owner = true
+script = ExtResource("1_bdwsf")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.34641853, 0, -6.7478986e-08, 0, 0.6228457, 0, 3.0284866e-08, 0, -0.77186966, 0.18340087, 0.07207975, 4.204308e-08)
+material_override = ExtResource("2_iq8yd")
+mesh = SubResource("BoxMesh_pr6yj")
+skeleton = NodePath("../../../Leg")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.09117168, -6.083754e-08, 0, 0, -3.041877e-08, -0.30654362, 7.97048e-09, -0.6959004, 1.33994495e-08, 0.17056105, 0.11223705, -1.035651)
+mesh = SubResource("CylinderMesh_k8v55")
+skeleton = NodePath("../../../Leg")
+surface_material_override/0 = ExtResource("3_60f20")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18294191, 0.11159229, -1.8418065)
+
+[node name="GunUI" type="Node" parent="."]
+
+[node name="ammo_progress" type="ProgressBar" parent="GunUI"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = -94.0
+offset_right = 225.0
+offset_bottom = -32.0
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_kw0bs")
+max_value = 30.0
+
+[node name="misc" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="misc"]
+unique_name_in_owner = true
+one_shot = true

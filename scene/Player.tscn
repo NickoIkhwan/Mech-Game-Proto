@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://da086prk4xfru"]
+[gd_scene load_steps=67 format=4 uid="uid://da086prk4xfru"]
 
 [ext_resource type="Script" uid="uid://caodfh4wowrtc" path="res://src/Player/player.gd" id="1_kpjcp"]
 [ext_resource type="Script" uid="uid://j0xtfbpep1pp" path="res://src/Player/cam_root.gd" id="1_xhfnw"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://smlrr6wujpi" path="res://src/Player/state/running.gd" id="10_oqto2"]
 [ext_resource type="Script" uid="uid://chajeuyafnpqx" path="res://src/Player/state/jumping.gd" id="11_oqto2"]
 [ext_resource type="Script" uid="uid://duivs7qamjhc1" path="res://src/Player/state/falling.gd" id="12_l60v7"]
+[ext_resource type="Script" uid="uid://b5gja0dajwscm" path="res://src/Player/state/dashing.gd" id="13_xf0yl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ea7gk"]
 
@@ -688,10 +689,15 @@ expand_mode = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="Ui_elements"]
 unique_name_in_owner = true
+anchors_preset = -1
+anchor_right = 1.028
 offset_left = 13.0
 offset_top = 13.0
-offset_right = 449.0
-offset_bottom = 40.0
+offset_right = -881.256
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
 theme = SubResource("Theme_waelg")
 theme_override_styles/background = SubResource("StyleBoxFlat_82gks")
 theme_override_styles/fill = SubResource("StyleBoxFlat_waelg")
@@ -720,6 +726,12 @@ script = ExtResource("11_oqto2")
 
 [node name="falling" type="Node" parent="StateMachine"]
 script = ExtResource("12_l60v7")
+
+[node name="dashing" type="Node" parent="StateMachine"]
+script = ExtResource("13_xf0yl")
+
+[node name="statetimer" type="Timer" parent="StateMachine"]
+unique_name_in_owner = true
 
 [connection signal="aim" from="." to="CamRoot" method="_on_character_body_3d_aim"]
 [connection signal="consume_boost" from="." to="Misc/Boost" method="_on_character_body_3d_consume_boost"]

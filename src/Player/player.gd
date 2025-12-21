@@ -1,5 +1,6 @@
 class_name Player extends CharacterBody3D
 
+
 signal shoot(is_shooting : bool)
 signal consume_boost(is_consuming_boost : bool)
 signal dash(is_dashing : bool)

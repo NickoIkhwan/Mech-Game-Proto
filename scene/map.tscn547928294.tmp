@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=4 uid="uid://cx880e3fph3g8"]
 
-[ext_resource type="Script" uid="uid://brwlvpmse0b3n" path="res://src/map.gd" id="1_rgtto"]
+[ext_resource type="Script" uid="uid://brwlvpmse0b3n" path="res://src/Maps/map.gd" id="1_rgtto"]
 [ext_resource type="ArrayOccluder3D" uid="uid://b3i3xr3c5l5k" path="res://scene/map.occ" id="2_wpp1k"]
 [ext_resource type="PackedScene" uid="uid://b32ck06bmorg3" path="res://Resource/vending.gltf" id="4_nf54y"]
 [ext_resource type="PackedScene" uid="uid://dkj4k7ir0gvst" path="res://scene/Enemy.tscn" id="5_4xw1d"]

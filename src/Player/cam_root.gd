@@ -23,10 +23,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		capture_mouse()
 		
 	if event is InputEventMouseMotion:
+		# Check if controls are enabled on the parent player
+		var player = get_parent()
+		if player and player.has_method("is_controls_enabled") or player.get("controls_enabled") == false:
+			return
+		
 		%CamYaw.rotation_degrees.y -= event.relative.x * 0.2
 		%CamPitch.rotation_degrees.x -= event.relative.y * 0.2
 		
-		%Torso.rotation_degrees.y -= event.relative.x * 0.2
 		%CamPitch.rotation_degrees.x = clamp(%CamPitch.rotation_degrees.x, -70.0, 50.0)
 
 func _physics_process(delta: float) -> void:

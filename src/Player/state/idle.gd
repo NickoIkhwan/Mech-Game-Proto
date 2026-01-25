@@ -1,10 +1,20 @@
 extends PlayerState
+var deaccel : float 
 
 func enter(previous_state_path : String, data := {}) -> void:
-	player.velocity.x = 0.0
-	player.velocity.z = 0.0
+	print("idle")
+	
+	if player.is_on_floor():
+		deaccel = player.deaccel
+	elif "dashing" in previous_state_path:
+		deaccel = player.deaccel_dash
+	else:
+		deaccel = player.deaccel_air
 	
 func physics_update(_delta : float) -> void:
+
+	player.velocity.x = lerp(player.velocity.x, player.target_acc.x, deaccel * _delta)
+	player.velocity.z = lerp(player.velocity.z, player.target_acc.z, deaccel * _delta)
 	player.velocity.y -= 30.0 * _delta
 	player.move_and_slide()
 	

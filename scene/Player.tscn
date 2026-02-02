@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://da086prk4xfru"]
+[gd_scene load_steps=22 format=3 uid="uid://da086prk4xfru"]
 
 [ext_resource type="Script" uid="uid://caodfh4wowrtc" path="res://src/Player/player.gd" id="1_kpjcp"]
 [ext_resource type="Script" uid="uid://j0xtfbpep1pp" path="res://src/Player/cam_root.gd" id="1_xhfnw"]
@@ -16,6 +16,9 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_ea7gk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kqvfm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l60v7"]
+size = Vector3(10, 10, 10)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l60v7"]
 
@@ -54,20 +57,30 @@ margin = 0.03
 
 [node name="SpringArmSide" type="SpringArm3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D"]
 unique_name_in_owner = true
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 collision_mask = 2
 shape = SubResource("SphereShape3D_kqvfm")
-spring_length = 1.5
+spring_length = 0.2
 margin = 0.03
 
-[node name="Camera3D" type="Camera3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D/SpringArmSide"]
+[node name="Camera3D" type="Camera3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D"]
 unique_name_in_owner = true
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.556708e-08, 0, 1.5)
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44990206, 1.9487402)
 
-[node name="RayCast3D" type="RayCast3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D/SpringArmSide/Camera3D"]
+[node name="CamCast" type="ShapeCast3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D/Camera3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0)
-collision_mask = 3
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_l60v7")
+target_position = Vector3(0, -15, 0)
+collision_mask = 2
+
+[node name="CamCast2" type="RayCast3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.449902, 1.9487401)
+top_level = true
+target_position = Vector3(0, -10, 0)
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_l60v7")

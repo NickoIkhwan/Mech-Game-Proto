@@ -2,6 +2,7 @@ extends PlayerState
 
 func enter(previous_state_path : String, data := {}) -> void:
 	print("slide")
+
 	
 func physics_update(_delta : float) -> void:
 	player.velocity.x = lerp(player.velocity.x, player.target_acc.x, player.current * _delta)

@@ -1,11 +1,14 @@
 extends Node3D
 
-var dash_fov : float = 160
-var normal_fov: float = 75
-var aim_fov : float = 30
+var dash_length : float = 15.0
+var normal_length: float = 3.0
+var aim_length : float = 4.0
+var dash_fov : float = 120.0
+var normal_fov: float = 75.0
+var aim_fov : float = 4.0
 var dashing : bool = false
 var aiming : bool = false
-
+var length_tween : Tween
 
 func _ready() -> void:
 	capture_mouse()
@@ -33,16 +36,27 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		%CamPitch.rotation_degrees.x = clamp(%CamPitch.rotation_degrees.x, -70.0, 50.0)
 
+func update_spring_length( target_value : float):
+	if length_tween:
+		length_tween.kill()
+		
+	length_tween = create_tween()
+	length_tween.tween_property(%SpringArm3D, "spring_length", target_value, 0.1)\
+		.set_trans(Tween.TRANS_BOUNCE)\
+		.set_ease(Tween.EASE_OUT)
+		
 func _physics_process(delta: float) -> void:
 	if dashing and not aiming:
-		%Camera3D.fov = lerp(%Camera3D.fov, dash_fov, 0.5 )
+		%SpringArm3D.spring_length = lerp(%SpringArm3D.spring_length, dash_length, 0.7)
+		%Camera3D.fov = lerp(%Camera3D.fov, dash_fov, 0.1)
 	else:
-		%Camera3D.fov = lerp(%Camera3D.fov, normal_fov, 0.5 )
-	
+		%SpringArm3D.spring_length = lerp(%SpringArm3D.spring_length, normal_length, 0.1)
+		%Camera3D.fov = lerp(%Camera3D.fov, normal_fov, 0.1)
+		
 	if aiming:
-		%Camera3D.fov = lerp(%Camera3D.fov, aim_fov, 0.5 )
+		%SpringArm3D.spring_length = lerp(%SpringArm3D.spring_length, aim_length, 0.5 )
 	else:
-		%Camera3D.fov = lerp(%Camera3D.fov, normal_fov, 0.5 )
+		%SpringArm3D.spring_length = lerp(%SpringArm3D.spring_length, normal_length, 0.5 )
 		
 
 func capture_mouse():

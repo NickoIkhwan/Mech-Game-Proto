@@ -2,14 +2,16 @@ extends PlayerState
 
 func enter(previous_state_path : String, data := {}) -> void:
 	print("dash")
-	player.velocity += player.direction * 3.0
+	player.after_dashing = true
+	player.velocity += player.direction * 5.0
 	
 func physics_update(_delta : float) -> void:
-	if player.boost_player >= 0 and not player.dash_locked:
-		player.target_acc *= 3.5
+	if player.boost_player >= 0.1 and not player.dash_locked:
+		player.target_acc *= Playervar.dash_multiplier
 		player.dashing_signal_true()
 	else:
 		player.dashing_signal_false()
+		player.velocity.y -= 0.2
 		player.dash_locked = true
 		
 	player.velocity.x = lerp(player.velocity.x, player.target_acc.x, player.current * _delta)
@@ -17,7 +19,7 @@ func physics_update(_delta : float) -> void:
 
 	player.move_and_slide()
 	
-	if Input.is_action_just_released("dash") and Input.is_action_pressed("movement"):
+	if player.dash_locked or Input.is_action_just_released("dash") and Input.is_action_pressed("movement"):
 		finished.emit(SLIDING)
 		player.dashing_signal_false()
 	elif Input.is_action_just_released("dash") or Input.is_action_just_released("movement"):

@@ -14,9 +14,18 @@ config/name="Another TPS Proto"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+Playervar="*res://src/Player/Global_var.gd"
+
 [dotnet]
 
 project/assembly_name="Another TPS Proto"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
 [filesystem]
 

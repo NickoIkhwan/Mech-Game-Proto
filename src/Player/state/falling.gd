@@ -7,6 +7,8 @@ func enter(previous_state_path : String, data := {}) -> void:
 	set_physics_process(false)
 	if "jumping" in previous_state_path:
 		set_physics_process(true)
+
+		
 	
 func physics_update(_delta : float) -> void:
 	player.velocity.y = lerp(player.velocity.y, -50.0, 0.78 * _delta)	
@@ -23,4 +25,6 @@ func physics_update(_delta : float) -> void:
 	elif  Input.is_action_pressed("dash") and Input.is_action_pressed("movement"):
 		finished.emit(DASHING)
 	elif player.is_on_floor() and Input.is_action_pressed("forward") or Input.is_action_pressed("back") or Input.is_action_pressed("right") or Input.is_action_pressed("left"):
+		finished.emit(RUNNING)
+	elif player.after_dashing and Input.is_action_pressed("movement"):
 		finished.emit(SLIDING)

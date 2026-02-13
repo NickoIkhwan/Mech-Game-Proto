@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyulugrijep13"]
+
+[ext_resource type="Script" uid="uid://dpc8u5e78fgfo" path="res://hangar/parts_manager.gd" id="1_17bwb"]
+
+[node name="PlayerH" type="Node3D"]
+
+[node name="Torso_socket" type="Marker3D" parent="."]
+
+[node name="PartsManager" type="Node3D" parent="." groups=["partsmanager"]]
+script = ExtResource("1_17bwb")

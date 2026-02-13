@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Mechpart" load_steps=3 format=3 uid="uid://b8kawsvir3dqy"]
+
+[ext_resource type="Script" uid="uid://bej2r11bin3bp" path="res://hangar/MechPart.gd" id="1_cgcng"]
+[ext_resource type="PackedScene" uid="uid://df2bu1s77t7h2" path="res://hangar/Arm1.tscn" id="1_xt2vk"]
+
+[resource]
+script = ExtResource("1_cgcng")
+part_name = "Arm1"
+mesh_scene = ExtResource("1_xt2vk")
+slot = "L_Arm"
+metadata/_custom_type_script = "uid://bej2r11bin3bp"

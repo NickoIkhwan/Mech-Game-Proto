@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://5c63bk45r4v5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0byku"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_0byku")
+
+[node name="child_socket" type="Marker3D" parent="."]
+
+[node name="L_Arm_socket" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5733273, 0, 0)
+
+[node name="R_Arm_socket" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5365292, 0, 0)

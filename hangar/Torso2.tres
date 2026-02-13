@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Mechpart" load_steps=3 format=3 uid="uid://c6fvsf3mf727s"]
+
+[ext_resource type="PackedScene" uid="uid://5c63bk45r4v5" path="res://hangar/Torso2.tscn" id="1_ku74r"]
+[ext_resource type="Script" uid="uid://bej2r11bin3bp" path="res://hangar/MechPart.gd" id="1_qvv0b"]
+
+[resource]
+script = ExtResource("1_qvv0b")
+part_name = "Torso2"
+mesh_scene = ExtResource("1_ku74r")
+slot = "Torso"
+metadata/_custom_type_script = "uid://bej2r11bin3bp"

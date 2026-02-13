@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://df2bu1s77t7h2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jt35k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xur4e"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_jt35k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D"]
+shape = SubResource("BoxShape3D_xur4e")
+
+[node name="child_socket" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5639958, 0, 0)

@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://e8tq4jstarig"]
+
+[ext_resource type="Script" uid="uid://dubaquu15qlvb" path="res://hangar/hangar.gd" id="1_0ckr3"]
+[ext_resource type="Script" uid="uid://xnc85egb3ad7" path="res://hangar/cam_hang.gd" id="2_5rnag"]
+[ext_resource type="Script" uid="uid://df6owbqdh8h0s" path="res://hangar/button.gd" id="3_aubfx"]
+[ext_resource type="Resource" uid="uid://gu5xkreayl7i" path="res://hangar/Torso1.tres" id="4_6dn6v"]
+[ext_resource type="Script" uid="uid://bnn8twf8kne01" path="res://hangar/button_2.gd" id="5_xyif4"]
+[ext_resource type="Resource" uid="uid://c6fvsf3mf727s" path="res://hangar/Torso2.tres" id="6_qb21d"]
+[ext_resource type="Script" uid="uid://c1afgq2ygmdo0" path="res://hangar/arm_1.gd" id="7_7fpvg"]
+[ext_resource type="Resource" uid="uid://b8kawsvir3dqy" path="res://hangar/Arm1.tres" id="8_8n8ib"]
+
+[node name="Hangar" type="Node3D"]
+script = ExtResource("1_0ckr3")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(7.140381, 0.39624023, 7.2060547)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.31422448, 0.94934875, 0, -0.94934875, 0.31422448, 0, 7.2744274, 0)
+
+[node name="Hang" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2516758, 0)
+
+[node name="CamHang" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2560532, 0)
+script = ExtResource("2_5rnag")
+
+[node name="CamYawH" type="Node3D" parent="CamHang"]
+unique_name_in_owner = true
+
+[node name="CamPitchH" type="Node3D" parent="CamHang/CamYawH"]
+unique_name_in_owner = true
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamHang/CamYawH/CamPitchH"]
+unique_name_in_owner = true
+spring_length = 4.0
+
+[node name="Camera3D" type="Camera3D" parent="CamHang/CamYawH/CamPitchH/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2913003, 5.8811607)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.003
+anchor_bottom = 0.99700004
+offset_left = 771.0
+offset_top = 5.0
+offset_right = 0.5439453
+offset_bottom = -0.056030273
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Torso1"
+script = ExtResource("3_aubfx")
+part_to_equip = ExtResource("4_6dn6v")
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Torso2
+"
+script = ExtResource("5_xyif4")
+part_to_equip = ExtResource("6_qb21d")
+
+[node name="Arm1" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Arm1
+"
+script = ExtResource("7_7fpvg")
+part_to_equip = ExtResource("8_8n8ib")

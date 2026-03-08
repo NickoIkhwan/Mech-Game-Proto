@@ -5,6 +5,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_xur4e"]
 
 [node name="Node3D" type="Node3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_jt35k")
@@ -12,10 +13,18 @@ mesh = SubResource("BoxMesh_jt35k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D"]
 shape = SubResource("BoxShape3D_xur4e")
 
-[node name="child_socket" type="Marker3D" parent="."]
-
 [node name="L_Arm_socket" type="Marker3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5733273, 0, 0)
 
+[node name="child_socket" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0067149997, -0.71234936, 0)
+
+[node name="Head_socket" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0067149997, 0.7461578, 0)
+
 [node name="R_Arm_socket" type="Marker3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5365292, 0, 0)

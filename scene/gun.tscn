@@ -15,6 +15,10 @@ bg_color = Color(0.76983994, 0.5571507, 0.13776878, 1)
 unique_name_in_owner = true
 script = ExtResource("1_2ovx3")
 
+[node name="child_socket" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18294191, 0.025877982, 0.44978076)
+
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.34641853, 0, -6.7478986e-08, 0, 0.6228457, 0, 3.0284866e-08, 0, -0.77186966, 0.18340087, 0.07207975, 4.204308e-08)
 material_override = ExtResource("2_nqd2g")

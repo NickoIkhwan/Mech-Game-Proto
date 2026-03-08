@@ -1,10 +1,11 @@
 extends Node3D
-class_name EquipManager
+class_name EquipManagerMain
 
 var equipped_parts = {}
+
 func _ready() -> void:
 	rebuild()
-	
+
 func equip_part(data: Mechpart):
 	var socket_path = data.slot + "_socket"
 	var socket = _find_socket_recursive(get_parent(), socket_path)
@@ -44,18 +45,16 @@ func _find_socket_recursive(root: Node, target_name: String) -> Node:
 	return null
 	
 func rebuild():
-	if MechConfigH.Torso != null:
-		equip_part(MechConfigH.Torso)
+	if GlobalMechConfig.Torso != null:
+		equip_part(GlobalMechConfig.Torso)
 		rebuild2()
 		
 func rebuild2():
-	if MechConfigH.L_Arm != null:
-		equip_part(MechConfigH.L_Arm)
-	if MechConfigH.R_Arm != null:
-		equip_part(MechConfigH.R_Arm)
-	if MechConfigH.Leg != null:
-		equip_part(MechConfigH.Leg)
-	if MechConfigH.Head != null:
-		equip_part(MechConfigH.Head)
-	if MechConfigH.R_Weapon != null:
-		equip_part(MechConfigH.R_Weapon)
+	if GlobalMechConfig.L_Arm != null:
+		equip_part(GlobalMechConfig.L_Arm)
+	if GlobalMechConfig.R_Arm != null:
+		equip_part(GlobalMechConfig.R_Arm)
+	if GlobalMechConfig.Leg != null:
+		equip_part(GlobalMechConfig.Leg)
+	if GlobalMechConfig.Head != null:
+		equip_part(GlobalMechConfig.Head)

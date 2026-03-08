@@ -8,7 +8,7 @@ signal aim(is_aiming : bool)
 
 
 @onready var boost_Gauge : ProgressBar = %ProgressBar
-@onready var gun = preload("res://scene/gun.tscn")
+#@onready var gun = preload("res://scene/gun.tscn")
 #@onready var tip: Vector3 = %CamCast2.global_position + %CamCast2.target_position
 var input_dir : Vector2
 var input_dir3D : Vector3
@@ -31,8 +31,6 @@ var is_aiming : bool = false
 var controls_enabled : bool = true
 
 func _ready() -> void:
-	var gun_inst = gun.instantiate()
-	%Arm_port.add_child(gun_inst)
 	
 	if after_dashing:
 		print("after_dash")
@@ -61,6 +59,13 @@ func calculate_movement_variables(_delta: float) -> void:
 	
 func _physics_process(delta: float) -> void:
 	calculate_movement_variables(delta)
+	
+	if is_dashing:
+		%dashparticle.emitting = true
+		print("particle emit")
+	else :
+		%dashparticle.emitting = false
+
 	
 	if %CamCast.is_colliding():
 		var count = %CamCast.get_collision_count()

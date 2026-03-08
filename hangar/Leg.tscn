@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://cimotojca04c6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_p3cxd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p3cxd"]
+
+[node name="Leg" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.787742, 0.6161206, 0)
+mesh = SubResource("BoxMesh_p3cxd")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/RigidBody3D"]
+shape = SubResource("BoxShape3D_p3cxd")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48404562, 0.6161206, 0)
+mesh = SubResource("BoxMesh_p3cxd")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2763069, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/RigidBody3D"]
+shape = SubResource("BoxShape3D_p3cxd")
+
+[node name="child_socket" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15038878, 1.1611116, 0)
+
+[node name="Torso_socket" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15038878, 1.3065175, 0)

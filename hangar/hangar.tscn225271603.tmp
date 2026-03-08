@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://e8tq4jstarig"]
+[gd_scene load_steps=13 format=3 uid="uid://e8tq4jstarig"]
 
 [ext_resource type="Script" uid="uid://dubaquu15qlvb" path="res://hangar/hangar.gd" id="1_0ckr3"]
 [ext_resource type="Script" uid="uid://xnc85egb3ad7" path="res://hangar/cam_hang.gd" id="2_5rnag"]
@@ -12,10 +12,6 @@
 [ext_resource type="Resource" uid="uid://carfmk2lk3js1" path="res://hangar/leg.tres" id="10_2y1xt"]
 [ext_resource type="Script" uid="uid://776oy08yp5pq" path="res://hangar/Head.gd" id="11_tj622"]
 [ext_resource type="Resource" uid="uid://tmblutehe7bh" path="res://hangar/Head.tres" id="12_fbmlc"]
-[ext_resource type="Script" uid="uid://dkxgawwdumclq" path="res://hangar/save_&_start.gd" id="13_b65ah"]
-[ext_resource type="Script" uid="uid://dwfmr5t1balqh" path="res://hangar/gun.gd" id="13_mfy4x"]
-[ext_resource type="Script" uid="uid://fkgbdkiorpgb" path="res://hangar/save.gd" id="14_6nw6l"]
-[ext_resource type="Resource" uid="uid://uq7vq2j15fdr" path="res://hangar/MachinegunR.tres" id="14_yk7x2"]
 
 [node name="Hangar" type="Node3D"]
 script = ExtResource("1_0ckr3")
@@ -29,7 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 0.31422448, 0.94934875, 0, -0.94934875, 0.31
 
 [node name="Hang" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 2.2516758, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2516758, 0)
 
 [node name="CamHang" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2560532, 0)
@@ -90,31 +86,3 @@ text = "head
 "
 script = ExtResource("11_tj622")
 part_to_equip = ExtResource("12_fbmlc")
-
-[node name="Gun" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "head
-"
-script = ExtResource("13_mfy4x")
-part_to_equip = ExtResource("14_yk7x2")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-anchors_preset = -1
-anchor_right = 1.003
-anchor_bottom = 0.99700004
-offset_left = -8.0
-offset_top = 424.0
-offset_right = -778.45605
-offset_bottom = -29.05603
-
-[node name="Back" type="Button" parent="VBoxContainer2"]
-layout_mode = 2
-text = "Back
-"
-script = ExtResource("13_b65ah")
-
-[node name="Save" type="Button" parent="VBoxContainer2"]
-layout_mode = 2
-text = "Save
-"
-script = ExtResource("14_6nw6l")

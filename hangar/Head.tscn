@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxsoaksfffo3v"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rr4e8"]
+
+[node name="Head" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2905118, 0, 0, 0, 0.6786397, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_rr4e8")
+
+[node name="child_socket" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15038878, -0.40082204, -0.35973155)

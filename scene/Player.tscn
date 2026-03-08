@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://da086prk4xfru"]
+[gd_scene load_steps=31 format=3 uid="uid://da086prk4xfru"]
 
 [ext_resource type="Script" uid="uid://caodfh4wowrtc" path="res://src/Player/player.gd" id="1_kpjcp"]
 [ext_resource type="Script" uid="uid://j0xtfbpep1pp" path="res://src/Player/cam_root.gd" id="1_xhfnw"]
+[ext_resource type="Script" uid="uid://de1o6hea737j5" path="res://scene/parts_manager_main.gd" id="2_xf0yl"]
 [ext_resource type="Script" uid="uid://d3vg23lw421fo" path="res://src/Player/boost.gd" id="5_82gks"]
 [ext_resource type="Script" uid="uid://u12pms5r5v1h" path="res://src/Player/ui_gauge_Manager.gd" id="6_dc1pm"]
 [ext_resource type="Texture2D" uid="uid://de5boy2r5upgs" path="res://Resource/bool.png" id="6_ea7gk"]
@@ -20,6 +21,30 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_l60v7"]
 size = Vector3(10, 10, 10)
 
+[sub_resource type="Gradient" id="Gradient_xf0yl"]
+offsets = PackedFloat32Array(0.013274336, 0.5663717, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c2vjh"]
+gradient = SubResource("Gradient_xf0yl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c2vjh"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 0, 10)
+color_ramp = SubResource("GradientTexture1D_c2vjh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xf0yl"]
+transparency = 1
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_c2vjh"]
+material = SubResource("StandardMaterial3D_xf0yl")
+radius = 0.06
+height = 0.1
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l60v7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_l60v7"]
@@ -35,8 +60,30 @@ bg_color = Color(0.6, 0.6, 0.6, 0.5058824)
 bg_color = Color(0, 0.8745098, 0.7647059, 1)
 border_color = Color(0, 0, 0.09803922, 1)
 
+[sub_resource type="Gradient" id="Gradient_c2vjh"]
+offsets = PackedFloat32Array(0, 0.48672566, 0.9778761)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_stxrh"]
+gradient = SubResource("Gradient_c2vjh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xf0yl"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = -1.6093254e-05
+color_ramp = SubResource("GradientTexture1D_stxrh")
+turbulence_enabled = true
+turbulence_noise_strength = 12.45
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_kpjcp")
+
+[node name="parts_manager_main" type="Node3D" parent="."]
+script = ExtResource("2_xf0yl")
 
 [node name="CamRoot" type="Node3D" parent="."]
 script = ExtResource("1_xhfnw")
@@ -67,6 +114,7 @@ margin = 0.03
 unique_name_in_owner = true
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44990206, 1.9487402)
+far = 120.0
 
 [node name="CamCast" type="ShapeCast3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D/Camera3D"]
 unique_name_in_owner = true
@@ -82,6 +130,18 @@ top_level = true
 target_position = Vector3(0, -10, 0)
 collision_mask = 2
 
+[node name="dashparticle" type="GPUParticles3D" parent="CamRoot/CamYaw/CamPitch"]
+unique_name_in_owner = true
+transform = Transform3D(12.812923, 0, 0, 0, 0.024292612, 10.802302, 0, -0.9997049, 0.26249355, 0, 0.27211428, -19.986216)
+emitting = false
+amount = 300
+lifetime = 0.5
+preprocess = 1.07
+speed_scale = 0.5
+randomness = 0.61
+process_material = SubResource("ParticleProcessMaterial_c2vjh")
+draw_pass_1 = SubResource("SphereMesh_c2vjh")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_l60v7")
 
@@ -92,10 +152,16 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6311951, 0.12055051, 0.24671422)
 
+[node name="Leg_socket" type="Marker3D" parent="Leg"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.627273, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Leg"]
+visible = false
 mesh = SubResource("BoxMesh_l60v7")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Leg"]
+visible = false
 mesh = SubResource("CapsuleMesh_xf0yl")
 
 [node name="Ui_elements" type="Node" parent="."]
@@ -165,9 +231,20 @@ script = ExtResource("13_xf0yl")
 unique_name_in_owner = true
 autostart = true
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(12.812923, 0, 0, 0, 5.344696, 0, 0, 0, 10.805491, 0, 2.0671477, 0)
+amount = 300
+lifetime = 2.0
+preprocess = 1.07
+speed_scale = 0.5
+randomness = 0.61
+process_material = SubResource("ParticleProcessMaterial_xf0yl")
+draw_pass_1 = SubResource("SphereMesh_c2vjh")
+
 [connection signal="aim" from="." to="CamRoot" method="_on_character_body_3d_aim"]
 [connection signal="consume_boost" from="." to="Misc/Boost" method="_on_character_body_3d_consume_boost"]
 [connection signal="dash" from="." to="CamRoot" method="_on_character_body_3d_dash"]
+[connection signal="dash" from="." to="CamRoot/CamYaw/CamPitch/dashparticle" method="_on_player_dash"]
 [connection signal="dash" from="." to="Misc/Boost" method="_on_character_body_3d_dash"]
 [connection signal="boost_status" from="Misc/Boost" to="." method="_on_boost_boost_status"]
 [connection signal="boost_status" from="Misc/Boost" to="Misc/GaugeManager" method="_on_boost_boost_status"]

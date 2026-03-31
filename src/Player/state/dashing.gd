@@ -2,8 +2,10 @@ extends PlayerState
 
 func enter(previous_state_path : String, data := {}) -> void:
 	print("dash")
-	player.after_dashing = true
+	Playervar.turn_rate = 1
 	player.velocity += player.direction * 5.0
+	await get_tree().create_timer(0.2).timeout
+	player.after_dashing = true
 	
 func physics_update(_delta : float) -> void:
 	if player.boost_player >= 0.1 and not player.dash_locked:
@@ -19,7 +21,7 @@ func physics_update(_delta : float) -> void:
 
 	player.move_and_slide()
 	
-	if player.dash_locked or Input.is_action_just_released("dash") and Input.is_action_pressed("movement"):
+	if player.after_dashing and Input.is_action_pressed("movement"):
 		finished.emit(SLIDING)
 		player.dashing_signal_false()
 	elif Input.is_action_just_released("dash") or Input.is_action_just_released("movement"):

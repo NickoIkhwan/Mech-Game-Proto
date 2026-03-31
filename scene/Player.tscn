@@ -152,16 +152,14 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6311951, 0.12055051, 0.24671422)
 
-[node name="Leg_socket" type="Marker3D" parent="Leg"]
+[node name="Torso_socket" type="Marker3D" parent="Leg"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.627273, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Leg"]
-visible = false
 mesh = SubResource("BoxMesh_l60v7")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Leg"]
-visible = false
 mesh = SubResource("CapsuleMesh_xf0yl")
 
 [node name="Ui_elements" type="Node" parent="."]

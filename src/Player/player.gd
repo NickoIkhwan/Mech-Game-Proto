@@ -55,7 +55,7 @@ func calculate_movement_variables(_delta: float) -> void:
 	
 	if input_dir3D.length_squared() > 0:
 		var target_basis = Basis.looking_at( direction, Vector3.UP)
-		%Leg.global_transform.basis = %Leg.global_transform.basis.slerp(target_basis, 10.2 * _delta)
+		%Leg.global_transform.basis = %Leg.global_transform.basis.slerp(target_basis, 10 * _delta)
 	
 func _physics_process(delta: float) -> void:
 	calculate_movement_variables(delta)

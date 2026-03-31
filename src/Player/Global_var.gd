@@ -4,7 +4,7 @@ extends Node
 var speed : float = 10.0
 var fly_speed : float = 30.0
 var dash_multiplier : float = 7.0
-
+var turn_rate : float = 10
 #Boost variables
 var boost : float = 100.0
 var max_boost : float = 100.0

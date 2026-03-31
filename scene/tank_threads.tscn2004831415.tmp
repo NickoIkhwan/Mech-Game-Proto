@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlwyjfc38jmsa"]
+
+[ext_resource type="Script" uid="uid://c4djqwsyd20yt" path="res://scene/tank_threads.gd" id="1_uyj1d"]
+[ext_resource type="Script" uid="uid://6sm4rca3o603" path="res://scene/cam_root.gd" id="2_ko0ry"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_evl0c"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uyj1d"]
+
+[node name="RigidBody3D" type="RigidBody3D"]
+script = ExtResource("1_uyj1d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_evl0c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_uyj1d")
+
+[node name="CamRoot" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_ko0ry")
+
+[node name="CamYaw" type="Node3D" parent="CamRoot"]
+unique_name_in_owner = true
+
+[node name="CamPitch" type="Node3D" parent="CamRoot/CamYaw"]
+unique_name_in_owner = true
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamRoot/CamYaw/CamPitch"]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D"]
+unique_name_in_owner = true

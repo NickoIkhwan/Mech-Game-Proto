@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlwyjfc38jmsa"]
+
+[ext_resource type="Script" uid="uid://c4djqwsyd20yt" path="res://scene/tank_threads.gd" id="1_uyj1d"]
+[ext_resource type="Script" uid="uid://6sm4rca3o603" path="res://scene/cam_root.gd" id="2_ko0ry"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_evl0c"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uyj1d"]
+
+[node name="Tank_Threads" type="CharacterBody3D"]
+script = ExtResource("1_uyj1d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_evl0c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_uyj1d")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.090454, -1.67735, -3.451538)
+size = Vector3(15.63501, 1, 14.327881)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0606995, -0.26401997, -2.8878121)
+size = Vector3(1.9136353, 3.8266602, 1.7063599)
+
+[node name="CamRoot" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_ko0ry")
+
+[node name="CamYaw" type="Node3D" parent="CamRoot"]
+unique_name_in_owner = true
+
+[node name="CamPitch" type="Node3D" parent="CamRoot/CamYaw"]
+unique_name_in_owner = true
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamRoot/CamYaw/CamPitch"]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D"]
+unique_name_in_owner = true
+current = true

@@ -2,6 +2,7 @@ extends PlayerState
 
 func enter(previous_state_path : String, data := {}) -> void:
 	print("slide")
+	Playervar.turn_rate = 2.5
 
 	
 func physics_update(_delta : float) -> void:
